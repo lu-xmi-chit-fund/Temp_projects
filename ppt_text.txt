@@ -1,0 +1,43 @@
+Broadcasts
+The term itself means sending data/signals to all users which are in the network.
+In context of android it means sending the data(broadcast message) to the subscribed receivers receivers.
+Usually the receivers and senders can be both Android System and Android Apps.
+Example of System Sending Broadcasts:
+Booting Up
+Screen Off/On
+USB Attached/Detached
+
+Broadcasts Messages are sent using Intent, usually the structure of an intent object is as follows:
+Intent Object
+->action //android.intent.action.AIRPLANE_MODE
+->data //boolean True/False
+
+Changes to system broadcasts:
+From android 7 onwards following changes have occured:
+
+Android 7
+
+Android 7.0 (API level 24) and higher don't send the following system broadcasts:
+ACTION_NEW_PICTURE //A new picture is taken by the camera, and the entry of the picture has been added to the media store. 
+ACTION_NEW_VIDEO //A new video is recorded by the camera, and the entry of the video has been added to the media store. 
+CONNECTIVITY_ACTION
+Apps targeting Android 7.0 (API level 24) and higher do not receive this broadcast if they declare the broadcast receiver in their manifest. Apps will still receive broadcasts
+ if they register their BroadcastReceiver with Context.registerReceiver() and that context is still valid.
+
+
+Android 8.0
+If your app targets Android 8.0 or higher, you cannot use the manifest to declare a receiver for most implicit broadcasts (broadcasts that don't target your app specifically). You can still use a context-registered receiver when the user is actively using your app.
+
+
+Android 9
+Beginning with Android 9 (API level 28), The NETWORK_STATE_CHANGED_ACTION broadcast doesn't receive information about the user's location or personally identifiable data.
+In addition, if your app is installed on a device running Android 9 or higher, system broadcasts from Wi-Fi don't contain SSIDs, BSSIDs, connection information, or scan results. To get this information, call getConnectionInfo() instead.
+
+
+Receiving broadcasts
+Apps can receive broadcasts in two ways:
+ 1. Through manifest-declared receivers 
+ 2. Through context-registered receivers.
+
+Manifest-declared receivers
+
